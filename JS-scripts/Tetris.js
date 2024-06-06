@@ -75,6 +75,7 @@ export class Tetris{
        this.posx=4;
      }
      rotateShape(){
-        console.log('rotate');
+        this.shape = this.shape[0].map((_, colIndex) => this.shape.map(row => row[colIndex]));
+        this.shape = this.shape.map(row => row.reverse());
      }
 }
