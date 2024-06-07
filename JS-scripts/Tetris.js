@@ -12,6 +12,14 @@ export class Tetris{
                     [[0,1,0],
                      [1,1,1]
                     ],
+                    [[1,0],
+                     [1,0],
+                     [1,1]
+                    ],
+                    [[0,1],
+                     [0,1],
+                     [1,1]
+                    ],
                     [[1,1,1,1]
                     ],
                     [[1,0],
@@ -28,7 +36,7 @@ export class Tetris{
         this.height = this.#Rows*this.#BlockSize
         this.Board = this.#makeBoard();
         this.cxt = context;
-        this.shape = Tetris.Shapes[Math.floor(Math.random()*7)];
+        this.shape = Tetris.Shapes[Math.floor(Math.random()*9)];
         this.posx = 4;
         this.posy = 0;
     }
@@ -70,12 +78,11 @@ export class Tetris{
                 this.Board.unshift([0,0,0,0,0,0,0,0,0,0]);
             }
        });
-       this.shape = Tetris.Shapes[Math.floor(Math.random()*7)];
+       this.shape = Tetris.Shapes[Math.floor(Math.random()*9)];
        this.posy=0;
        this.posx=4;
      }
      rotateShape(){
-        this.shape = this.shape[0].map((_, colIndex) => this.shape.map(row => row[colIndex]));
-        this.shape = this.shape.map(row => row.reverse());
+        this.shape = this.shape[0].map((_,x) => this.shape.map((_,y) => this.shape[this.shape.length-(y+1)][x]));
      }
 }
