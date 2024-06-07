@@ -83,6 +83,6 @@ export class Tetris{
        this.posx=4;
      }
      rotateShape(){
-        this.shape = this.shape[0].map((_,x) => this.shape.map((_,y) => this.shape[this.shape.length-(y+1)][x]));
+        return this.shape[0].map((_,x) => this.shape.map((_,y) => this.shape[this.shape.length-(y+1)][x]));
      }
 }

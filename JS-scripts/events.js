@@ -5,7 +5,7 @@ export const events = document.addEventListener('keydown',(e)=>{
     if(e.key == 'ArrowRight') evalRightColitions();
     if(e.key == 'ArrowLeft') evalLeftColitions();
     if(e.key == 'ArrowDown') evalDownColitions();
-    if(e.key == 'c' || e.key == 'ArrowUp') tetris.rotateShape();  
+    if(e.key == 'c' || e.key == 'ArrowUp') evalRotationColitions(); 
 })
 
 function evalDownColitions(){
@@ -30,4 +30,13 @@ function evalRightColitions(){
         if(tetris.Board[y+tetris.posy][x+tetris.posx+1]==1 & e==1) boolean = false;
     }))
     if(boolean) tetris.posx++;
+}
+function evalRotationColitions(){
+    let boolean = true;
+    let rotateShape = tetris.rotateShape();
+    rotateShape.forEach((row,y) => row.forEach((e,x) =>{
+        if(tetris.Board[y+tetris.posy][x+tetris.posx]==1 & e==1) boolean = false;
+    }))
+    if(tetris.posx+rotateShape[0].length>10) boolean = false;
+    if(boolean) tetris.shape = rotateShape;
 }
