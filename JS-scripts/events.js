@@ -8,7 +8,7 @@ export const events = document.addEventListener('keydown',(e)=>{
     if(e.key == 'c' || e.key == 'ArrowUp') evalRotationColitions(); 
 })
 
-function evalDownColitions(){
+export function evalDownColitions(){
     let boolean = true;
     tetris.shape.forEach((row,y) => row.forEach((e,x) =>{
         if(tetris.Board[y+tetris.posy+1][x+tetris.posx]==1 & e==1) boolean = false;
