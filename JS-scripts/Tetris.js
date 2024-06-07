@@ -28,6 +28,7 @@ export class Tetris{
                     [[1]
                     ]
                     ]
+    static BlockIcon = new Image();
     #Rows = 20;
     #Cols = 10;
     #BlockSize = 25;
@@ -39,6 +40,7 @@ export class Tetris{
         this.shape = Tetris.Shapes[Math.floor(Math.random()*9)];
         this.posx = 4;
         this.posy = 0;
+        Tetris.BlockIcon.src = './icons/block.svg';
     }
 
     #makeBoard(){
@@ -52,14 +54,15 @@ export class Tetris{
      drawBoard(){
         this.cxt.fillStyle = 'yellow';
         this.Board.forEach((row,y) => row.forEach((e,x) =>{
-            if(e == 1) this.cxt.fillRect(x*25,y*25,25,25);
+            //if(e == 1) this.cxt.fillRect(x*25,y*25,25,25);
+            if(e == 1) this.cxt.drawImage(Tetris.BlockIcon,x*25,y*25,25,25);
         }))
      }
      drawShape(){   
         this.cxt.fillStyle = 'yellow';
         this.cxt.scale(this.#BlockSize,this.#BlockSize);
         this.shape.forEach((row,y) => row.forEach((e,x) => {
-            if(e == 1) this.cxt.fillRect(this.posx+x,this.posy+y,1,1);
+            if(e == 1) this.cxt.drawImage(Tetris.BlockIcon,this.posx+x,this.posy+y,1,1);
         }))
         this.cxt.scale(1/this.#BlockSize,1/this.#BlockSize);
      }
