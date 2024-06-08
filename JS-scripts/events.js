@@ -1,4 +1,4 @@
-import { Tetris } from "./Tetris.js";
+//import { Tetris } from "./Tetris.js";
 import { tetris } from "./main.js";
 //Eventos
 export const events = document.addEventListener('keydown',(e)=>{
