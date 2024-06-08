@@ -18,7 +18,9 @@ function gameLoop(){
     frame++;
     ctx.fillStyle = 'black';
     ctx.fillRect(0,0,canvas.width,canvas.height);
-    if(frame%60 == 0) evalDownColitions();
+    if(frame%60 == 0){
+        evalDownColitions();
+        }
     update();
     requestAnimationFrame(gameLoop);
 }
