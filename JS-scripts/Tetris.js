@@ -67,9 +67,7 @@ export class Tetris{
     }
     #drawBoard(){
         this.Board.forEach((row,y) => row.forEach((block,x) =>{
-            if(block > 0){
-                this.cxt.drawImage(Tetris.Icons[(block-1)%2],x*25,y*25,25,25);
-            }
+            if(block > 0) this.cxt.drawImage(Tetris.Icons[(block-1)%2],x*25,y*25,25,25);
             }))
     }
     #drawShape(){
@@ -81,10 +79,8 @@ export class Tetris{
     }
     #drawGrid(){
         this.cxt.lineWidth = 0.5;
-        this.cxt.strokeStyle = '#656548'
-        this.Board.forEach((row,y) => row.forEach((_,x) =>{
-            this.cxt.strokeRect(x*25,y*25,25,25);
-        }))
+        this.cxt.strokeStyle = '#656548';
+        this.Board.forEach((row,y) => row.forEach((_,x) => this.cxt.strokeRect(x*25,y*25,25,25)));
      }
     solidShape(){
        this.shape.forEach((row,y)=>{
@@ -99,8 +95,29 @@ export class Tetris{
     rotateShape(){
         return this.shape[0].map((_,x) => this.shape.map((_,y) => this.shape[this.shape.length-(y+1)][x]));
     }
+    stepDownShape(bool = true, shadowY = 0){
+        this.shape.forEach((row,y) => row.forEach((block,x) =>{
+            if(this.Board[y+this.posy+1+shadowY][x+this.posx]>0 && block>0) bool = false;
+        }));
+        return bool;
+    }
+    pullDownShape(){
+        this.posy += this.#drawShadow()
+        this.solidShape();
+    }
+    #drawShadow(){
+        this.cxt.fillStyle = '#656548';
+        let shadowY = 0;
+        while(this.stepDownShape(true,shadowY)) shadowY++;
+        this.shape.forEach((row,y)=>{
+            row.forEach((block,x)=>{
+                if(block==1)this.cxt.fillRect((this.posx+x)*25,(this.posy+shadowY+y)*25,25,25);
+            })});
+        return shadowY;
+    }
     update(){
         this.#drawBoard();
+        this.#drawShadow();
         this.#drawShape();
         this.#drawGrid();
     }

@@ -1,19 +1,15 @@
-//import { Tetris } from "./Tetris.js";
 import { tetris } from "./main.js";
-//Eventos
+
 export const events = document.addEventListener('keydown',(e)=>{
     if(e.key == 'ArrowRight') evalRightColitions();
     if(e.key == 'ArrowLeft') evalLeftColitions();
     if(e.key == 'ArrowDown') evalDownColitions();
     if(e.key == 'c' || e.key == 'ArrowUp') evalRotationColitions(); 
+    if(e.key == ' ') tetris.pullDownShape();
 })
 
 export function evalDownColitions(){
-    let boolean = true;
-    tetris.shape.forEach((row,y) => row.forEach((e,x) =>{
-        if(tetris.Board[y+tetris.posy+1][x+tetris.posx]>0 & e>0) boolean = false;
-    }))
-    boolean ? tetris.posy++ : tetris.solidShape();
+    tetris.stepDownShape(true) ? tetris.posy++ : tetris.solidShape();
 }
 function evalLeftColitions(){
     let boolean = true;

@@ -1,5 +1,5 @@
 import { Tetris } from "./Tetris.js";
-import { events,evalDownColitions } from "./events.js";
+import { evalDownColitions } from "./events.js";
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d',{alpha: false});
