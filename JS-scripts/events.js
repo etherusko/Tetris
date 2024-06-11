@@ -3,8 +3,9 @@ export const events = document.addEventListener('keydown',(e)=>{
     if(e.key == 'ArrowRight') evalRightColitions();
     if(e.key == 'ArrowLeft') evalLeftColitions();
     if(e.key == 'ArrowDown') evalDownColitions();
-    if(e.key == 'c' || e.key == 'ArrowUp') evalRotationColitions(); 
+    if(e.key == 'ArrowUp') evalRotationColitions(); 
     if(e.key == ' ') tetris.pullDownShape();
+    if(e.key == 'c'&& tetris.canHold) tetris.holdShape();
 })
 
 export function evalDownColitions(){

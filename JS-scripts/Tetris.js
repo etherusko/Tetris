@@ -1,3 +1,4 @@
+import { GameInterface } from "./GameInterface.js";
 export class Tetris{
     static Shapes = [
                     [[1,1],
@@ -39,6 +40,8 @@ export class Tetris{
         this.cxt = context;
         this.Board = Tetris.#makeBoard();
         this.#makeNewShape();
+        this.hold = "void";
+        this.canHold = true;
     }
     
     /**Methods:*/    
@@ -59,8 +62,8 @@ export class Tetris{
         arr.push([1,1,1,1,1,1,1,1,1,1]);
         return arr;
     }
-    #makeNewShape(){
-       this.shapeNumber = Math.floor(Math.random()*Tetris.Shapes.length);
+    #makeNewShape(n){
+       this.shapeNumber = n ?? Math.floor(Math.random()*Tetris.Shapes.length);
        this.shape = Tetris.Shapes[this.shapeNumber];
        this.posy=0;
        this.posx=4;
@@ -91,6 +94,7 @@ export class Tetris{
             }
        });
        this.#makeNewShape();
+       this.canHold = true;
     }
     rotateShape(){
         return this.shape[0].map((_,x) => this.shape.map((_,y) => this.shape[this.shape.length-(y+1)][x]));
@@ -120,5 +124,19 @@ export class Tetris{
         this.#drawShadow();
         this.#drawShape();
         this.#drawGrid();
+    }
+    holdShape(){
+        console.log("hold");
+        if(this.hold === "void"){
+            GameInterface.drawHoldInteface();
+            this.hold = this.shapeNumber;
+            this.#makeNewShape();
+        }else{
+            let old = this.shapeNumber;
+            GameInterface.drawHoldInteface();
+            this.#makeNewShape(this.hold);
+            this.hold = old;
+        }
+        this.canHold = false;
     }
 }

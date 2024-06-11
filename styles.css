@@ -20,8 +20,8 @@ header{
     height: 85vh;
     display: grid;
     /*width: clamp(430px, 50%, 800px);*/
-    grid-template-columns: 13.75vh max-content 15vh;
-    grid-template-rows: 13vh repeat(4, 18vh);
+    grid-template-columns: 14vh max-content 15vh;
+    grid-template-rows: 14vh repeat(4, 17.75vh);
     background: palegoldenrod;
 }
 .hold{
