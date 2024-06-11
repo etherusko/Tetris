@@ -1,5 +1,4 @@
 import { tetris } from "./main.js";
-
 export const events = document.addEventListener('keydown',(e)=>{
     if(e.key == 'ArrowRight') evalRightColitions();
     if(e.key == 'ArrowLeft') evalLeftColitions();
