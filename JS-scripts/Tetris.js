@@ -25,8 +25,6 @@ export class Tetris{
                     ],
                     [[1,0],
                      [1,1]
-                    ],
-                    [[1]
                     ]
                     ]
     static Icons = this.#setIcons();
@@ -47,11 +45,14 @@ export class Tetris{
     /**Methods:*/    
     static #setIcons(){
         let arr = []
-        for(let i=0; i<2; i++){
+        for(let i=0; i<8; i++){
             let icon = new Image();
-            icon.src = `./icons/block${i}.svg`
+            icon.src = `./icons/block${i}.svg`;
             arr.push(icon);
         }
+        let shadow = new Image();
+        shadow.src = './icons/shadow.svg';
+        arr['shadow'] = shadow;
         return arr;
     }
     static #makeBoard(){
@@ -70,13 +71,13 @@ export class Tetris{
     }
     #drawBoard(){
         this.Board.forEach((row,y) => row.forEach((block,x) =>{
-            if(block > 0) this.cxt.drawImage(Tetris.Icons[(block-1)%2],x*25,y*25,25,25);
+            if(block > 0) this.cxt.drawImage(Tetris.Icons[(block-1)%8],x*25,y*25,25,25);
             }))
     }
     #drawShape(){
          this.cxt.scale(Tetris.#BlockSize,Tetris.#BlockSize);
          this.shape.forEach((row,y) => row.forEach((block,x) => {
-            if(block == 1) this.cxt.drawImage(Tetris.Icons[this.shapeNumber%2],this.posx+x,this.posy+y,1,1);
+            if(block == 1) this.cxt.drawImage(Tetris.Icons[this.shapeNumber%8],this.posx+x,this.posy+y,1,1);
         }))
         this.cxt.scale(1/Tetris.#BlockSize,1/Tetris.#BlockSize);
     }
@@ -115,7 +116,8 @@ export class Tetris{
         while(this.stepDownShape(true,shadowY)) shadowY++;
         this.shape.forEach((row,y)=>{
             row.forEach((block,x)=>{
-                if(block==1)this.cxt.fillRect((this.posx+x)*25,(this.posy+shadowY+y)*25,25,25);
+                if(block==1)this.cxt.drawImage(Tetris.Icons['shadow'],(this.posx+x)*25,(this.posy+shadowY+y)*25,25,25);
+                //this.cxt.drawImage(Tetris.Icons[this.shapeNumber%2],this.posx+x,this.posy+y,1,1)
             })});
         return shadowY;
     }
