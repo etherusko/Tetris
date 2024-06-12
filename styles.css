@@ -50,9 +50,13 @@ canvas{
     grid-row: span 5;
     background: darkslategrey;
 }
-.game-info{
+.shapes-stack{
     grid-row: span 5;
-    background: black;
+    background: rgb(155, 134, 134);
+}
+.shapes-stack canvas{
+    width: 100%;
+    height: auto;
 }
 footer{
     height: 8.5vh;

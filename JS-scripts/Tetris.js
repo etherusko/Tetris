@@ -37,6 +37,7 @@ export class Tetris{
     constructor(context){
         this.cxt = context;
         this.Board = Tetris.#makeBoard();
+        this.shpaesArray = this.#initShapesArray();
         this.#makeNewShape();
         this.hold = "void";
         this.canHold = true;
@@ -63,12 +64,24 @@ export class Tetris{
         arr.push([1,1,1,1,1,1,1,1,1,1]);
         return arr;
     }
+    /*** */
     #makeNewShape(n){
-       this.shapeNumber = n ?? Math.floor(Math.random()*Tetris.Shapes.length);
+       this.shapeNumber = n ?? this.shpaesArray.shift();
        this.shape = Tetris.Shapes[this.shapeNumber];
        this.posy=0;
        this.posx=4;
+       if(!n) this.shpaesArray.push(Math.floor(Math.random()*Tetris.Shapes.length));
+       console.log(this.shpaesArray);
     }
+    #initShapesArray(){
+        let arr = [];
+        for(let i=0; i<5; i++){
+            arr.push(Math.floor(Math.random()*Tetris.Shapes.length))
+        }
+        console.log(arr);
+        return arr;
+    }
+    /*** */
     #drawBoard(){
         this.Board.forEach((row,y) => row.forEach((block,x) =>{
             if(block > 0) this.cxt.drawImage(Tetris.Icons[(block-1)%8],x*25,y*25,25,25);
@@ -126,6 +139,7 @@ export class Tetris{
         this.#drawShadow();
         this.#drawShape();
         this.#drawGrid();
+        GameInterface.drawShapesInterface();
     }
     holdShape(){
         console.log("hold");
