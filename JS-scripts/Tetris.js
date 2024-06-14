@@ -13,13 +13,11 @@ export class Tetris{
                     [[0,1,0],
                      [1,1,1]
                     ],
-                    [[0,1],
-                     [0,1],
-                     [1,1]
+                    [[1,1,1],
+                     [1,0,0],
                     ],
-                    [[1,0],
-                     [1,0], 
-                     [1,1]
+                    [[1,0,0],
+                     [1,1,1], 
                     ],
                     [[1,1,1,1]
                     ],
@@ -70,8 +68,7 @@ export class Tetris{
        this.shape = Tetris.Shapes[this.shapeNumber];
        this.posy=0;
        this.posx=4;
-       if(!n) this.shpaesArray.push(Math.floor(Math.random()*Tetris.Shapes.length));
-       console.log(this.shpaesArray);
+       if(isNaN(n)) this.shpaesArray.push(Math.floor(Math.random()*Tetris.Shapes.length));
     }
     #initShapesArray(){
         let arr = [];
@@ -130,7 +127,6 @@ export class Tetris{
         this.shape.forEach((row,y)=>{
             row.forEach((block,x)=>{
                 if(block==1)this.cxt.drawImage(Tetris.Icons['shadow'],(this.posx+x)*25,(this.posy+shadowY+y)*25,25,25);
-                //this.cxt.drawImage(Tetris.Icons[this.shapeNumber%2],this.posx+x,this.posy+y,1,1)
             })});
         return shadowY;
     }

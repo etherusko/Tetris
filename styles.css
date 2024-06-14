@@ -1,3 +1,7 @@
+:root{
+    --interface-up-color: #2b5271;
+    --interface-down-color: #1c141e;
+}
 body{
     margin: 0;
     background: #354b48;
@@ -17,18 +21,29 @@ header{
     width: 100%;
     justify-content: center;
     align-items: center;
-    background: #3c635f;
+    background: #19141a
 }
 .game{
-    height: 85vh;
+    margin-top: 0.5vh;
+    height: 84.5vh;
     display: grid;
     /*width: clamp(430px, 50%, 800px);*/
     grid-template-columns: 14vh max-content 15vh;
-    grid-template-rows: 14vh repeat(4, 17.75vh);
+    grid-template-rows: repeat(5, 17vh);
 }
-/*.hold{
-
-}*/
+.hold{
+    display: flex;
+    flex-direction: column;
+    grid-row: span 3;
+    background-image: url(./icons/marco.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: var(--interface-up-color);
+}
+.hold-canvas{
+    padding: 12%;
+    height: auto;
+}
 .interface-advice{
     display: flex;
     padding: 0.5em;
@@ -36,27 +51,41 @@ header{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background: black;
 }
 .interface-advice p{
     text-align: center;
-    color: blueviolet;
+    color: #d4b7ef;
     font-weight: 900;
     margin: 0.5em;
 }
-canvas{
+.canvas-container{
+    display: flex;
     height: 100%;
     max-height: 85vh;
     grid-row: span 5;
-    background: darkslategrey;
+    background: #121111;
+}
+#Tetris{
+    margin: 1.5vh;
 }
 .shapes-stack{
-    grid-row: span 5;
-    background: rgb(155, 134, 134);
+    grid-row: span 3;
+    background-color: var(--interface-up-color);
 }
 .shapes-stack canvas{
     width: 100%;
     height: auto;
+    box-sizing: border-box;
+    padding: 1.7vh;
+    background-image: url(./icons/marco.png), url(./icons/marco.png), url(./icons/marco.png);
+    background-position: top, bottom, center;
+    background-size: 100%;
+    background-color: cadetblue;
+    background-repeat: no-repeat;
+}
+.low-background{
+    grid-row: span 2;
+    background-color: var(--interface-down-color);
 }
 footer{
     height: 8.5vh;
