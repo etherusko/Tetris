@@ -62,23 +62,32 @@ export class Tetris{
         arr.push([1,1,1,1,1,1,1,1,1,1]);
         return arr;
     }
-    /*** */
     #makeNewShape(n){
-       this.shapeNumber = n ?? this.shpaesArray.shift();
+       if(isNaN(n)){
+        let newShape = this.#getRandomNumberShape();
+        while(newShape == this.shpaesArray[4] || newShape == this.shpaesArray[3] ){
+            newShape = this.#getRandomNumberShape();
+        }
+        this.shapeNumber = this.shpaesArray.shift();
+        this.shpaesArray.push(newShape);
+       }else this.shapeNumber = n;  
        this.shape = Tetris.Shapes[this.shapeNumber];
        this.posy=0;
        this.posx=4;
-       if(isNaN(n)) this.shpaesArray.push(Math.floor(Math.random()*Tetris.Shapes.length));
     }
     #initShapesArray(){
         let arr = [];
-        for(let i=0; i<5; i++){
-            arr.push(Math.floor(Math.random()*Tetris.Shapes.length))
+        arr.push(this.#getRandomNumberShape());
+        for(let i=1; i<5; i++){
+            let shape = this.#getRandomNumberShape();
+            while(shape == arr[i-1]) shape = this.#getRandomNumberShape();
+            arr.push(shape);
         }
-        console.log(arr);
         return arr;
     }
-    /*** */
+    #getRandomNumberShape(){
+        return Math.floor(Math.random()*Tetris.Shapes.length);
+    }
     #drawBoard(){
         this.Board.forEach((row,y) => row.forEach((block,x) =>{
             if(block > 0) this.cxt.drawImage(Tetris.Icons[(block-1)%8],x*25,y*25,25,25);
@@ -138,7 +147,6 @@ export class Tetris{
         GameInterface.drawShapesInterface();
     }
     holdShape(){
-        console.log("hold");
         if(this.hold === "void"){
             GameInterface.drawHoldInteface();
             this.hold = this.shapeNumber;
