@@ -96,3 +96,49 @@ footer{
     color: #ffa6f7;
     background: #2e2241;
 }
+.controls{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 6.5vh;
+    width: 84%;
+    height: 85vh;
+    background: #232727f2;
+}
+.controls h1{
+    color: white;
+    text-align: center;
+    font-size: 2.7em;
+    margin: 3vh;
+}
+.controls h3{
+    color: #f5f00c;
+    text-align: center;
+}
+.menu-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2vh;
+    height: 100%;
+}
+.menu-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33%;
+    border: 0.1vw white solid;
+}
+.menu-section h2{
+    margin: 2vh 0;
+    text-align: center;
+    color: white;
+}
+.action,.control{
+    flex: 1;
+}
+.menu-section > div:nth-child(even){
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background: #d4b7ef2e;
+}

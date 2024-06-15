@@ -1,11 +1,16 @@
-import { tetris } from "./main.js";
+import { tetris, gameLoop } from "./main.js";
 export const events = document.addEventListener('keydown',(e)=>{
-    if(e.key == 'ArrowRight') evalRightColitions();
-    if(e.key == 'ArrowLeft') evalLeftColitions();
-    if(e.key == 'ArrowDown') evalDownColitions();
-    if(e.key == 'ArrowUp') evalRotationColitions(); 
-    if(e.key == ' ') tetris.pullDownShape();
-    if(e.key == 'c'&& tetris.canHold) tetris.holdShape();
+    if (tetris.running){
+        if(e.key == 'ArrowRight') evalRightColitions();
+        if(e.key == 'ArrowLeft') evalLeftColitions();
+        if(e.key == 'ArrowDown') evalDownColitions();
+        if(e.key == 'ArrowUp') evalRotationColitions(); 
+        if(e.key == ' ') tetris.pullDownShape();
+        if(e.key == 'c'&& tetris.canHold) tetris.holdShape();
+        if(e.key == 'p') evalRunning();
+    }else{
+        evalRunning();
+    }
 })
 
 export function evalDownColitions(){
@@ -35,4 +40,14 @@ function evalRotationColitions(){
     }))
     if(tetris.posx+rotateShape[0].length>10) boolean = false;
     if(boolean) tetris.shape = rotateShape;
+}
+function evalRunning(){
+    if(tetris.running){
+        tetris.running = false;
+        tetris.controlsMenu.style.display = 'flex';
+    }else{
+        tetris.running = true;
+        tetris.controlsMenu.style.display = 'none';
+    }
+    gameLoop();
 }

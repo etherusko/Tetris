@@ -39,6 +39,8 @@ export class Tetris{
         this.#makeNewShape();
         this.hold = "void";
         this.canHold = true;
+        this.running = false;
+        this.controlsMenu = document.querySelector('.controls');
     }
     
     /**Methods:*/    
@@ -140,6 +142,7 @@ export class Tetris{
         return shadowY;
     }
     update(){
+        this.cxt.clearRect(0,0,Tetris.Width,Tetris.Height);
         this.#drawBoard();
         this.#drawShadow();
         this.#drawShape();
