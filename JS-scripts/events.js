@@ -12,6 +12,9 @@ export const events = document.addEventListener('keydown',(e)=>{
         evalRunning();
     }
 })
+export const moseEventes = document.addEventListener('mousedown', ()=>{
+    if(!tetris.running) evalRunning();
+})
 
 export function evalDownColitions(){
     tetris.stepDownShape(true) ? tetris.posy++ : tetris.solidShape();

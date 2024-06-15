@@ -15,7 +15,10 @@
         </header>
         <section class="game">
             <div class="hold">
-                <div class="interface-advice"><p>press c to save current piece</p></div>
+                <div class="interface-advice">
+                    <p>press c to save current shape</p>
+                    <p>press p to see game controls </p>
+                </div>
             </div>
             <div class="canvas-container">
                 <canvas id="Tetris"></canvas>   
@@ -25,11 +28,16 @@
             <div class="low-background"></div>
             <div class="low-background"></div>
         </section>
-        <footer>etherusko.labs</footer>
+        <footer>
+            <a target="_blank" rel="noreferrer" href="https://github.com/etherusko/Tetris">
+                <img src="./icons/github.svg">
+                <p>etherusko.labs</p>
+            </a>
+        </footer>
         <section class="controls">
             <H1>Controls</H1>
             <div class="menu-container">
-                <div class="menu-section"><h2>Actions</h2>
+                <div class="menu-section actions">
                     <div class="action"><p>move</p></div>
                     <div class="action"><p>down</p></div>
                     <div class="action"><p>drop</p></div>
@@ -37,13 +45,25 @@
                     <div class="action"><p>hold</p></div>
                     <div class="action"><p>pause</p></div>                    
                 </div>
-                <div class="menu-section"><h2>Controls</h2>
-                    <div class="control"><p>move</p></div>
-                    <div class="control"><p>down</p></div>
-                    <div class="control"><p>drop</p></div>
-                    <div class="control"><p>spin</p></div>
-                    <div class="control"><p>hold</p></div>
-                    <div class="control"><p>pause</p></div>   
+                <div class="menu-section sprites">
+                    <div class="control">
+                        <img id="move-control-img" src="./icons/arrows-sprite.png">
+                    </div>
+                    <div class="control">
+                        <img class="two-frames-sprite" src="./icons/pushdown-sprite.png">
+                    </div>
+                    <div class="control">
+                        <img class="two-frames-sprite" src="./icons/spacebar-sprite.png">
+                    </div>
+                    <div class="control">
+                        <img class="two-frames-sprite" src="./icons/spin-sprite.png">
+                    </div>
+                    <div class="control">
+                        <img class="two-frames-sprite" src="./icons/hold-sprite.png">
+                    </div>
+                    <div class="control">
+                        <img class="two-frames-sprite" src="./icons/pause-sprite.png">
+                    </div>   
                 </div>
             </div>
             <h3>Press any to continue</h3>
